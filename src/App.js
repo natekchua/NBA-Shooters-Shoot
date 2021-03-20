@@ -1,22 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <div className='App-intro-text'>
+          <h2>Welcome to <span className='primary'>Shooters Shoot.</span></h2>
+          <h3>An interactive data visualization for 2020 NBA Shooting Statistics.</h3>
+          <Button variant='contained' color='primary'>
+            GO
+          </Button>
+        </div>
       </header>
     </div>
   );
