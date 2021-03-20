@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Home from './components/Home/Home';
-import Chart1 from './components/AMCharts/Chart1/Chart1';
+import Chart1 from './components/Charts/Chart1/Chart1';
 
 import './App.css';
 
