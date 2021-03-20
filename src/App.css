@@ -2,26 +2,6 @@
   text-align: center;
 }
 
-.App-header {
-  background: linear-gradient(0deg, rgba(44, 44, 44, 0.795), rgba(61, 61, 61, 0.384)), url('./img/bg.jpg') center no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-intro-text {
-  animation: fade-in 2s;
-}
-
-.primary {
-  color: greenyellow;
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
