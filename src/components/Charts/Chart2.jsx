@@ -83,7 +83,7 @@ function Chart2 (props) {
           height={400}
           options={chartOptions}
         />
-        <div className="horizontal-flex">
+        <div className='horizontal-flex'>
           <p>
             This variation uses a sample subset that is represented through a horizontally grouped bar chart.
             The x-axis seperates each group by shooting rows "FT Made", "FT Attempted", and "FT%" where "FT" means "Free Throw".

@@ -24,11 +24,7 @@ const chartOptions = {
 
   },
   legend: {
-    display: true,
-    position: 'right',
-    labels: {
-      fontColor: 'white'
-     }
+    display: false
   },
   maintainAspectRatio: false,
   scales: {
@@ -49,7 +45,7 @@ function Chart3 (props) {
   const { dataset } = props;
   const classes = useStyles();
 
-  let testSubset3, playerLabels3, chartData3;
+  let testSubset3, playerLabels3, chartData3, chartData3b;
   const xAxisLabels = ['FG Made', 'FG Attempted'];
 
   if (dataset) {
@@ -63,7 +59,19 @@ function Chart3 (props) {
         return {
           label: playerLabels3[idx],
           // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-          backgroundColor: `#${Math.floor(Math.random()*16777214).toString(16)}`,
+          backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          data: stat
+        }
+      })
+    };
+
+    chartData3b = {
+      labels: ['FG%'],
+      datasets: testSubset3.map(fp => [fp.FGPct]).map((stat, idx) => {
+        return {
+          label: playerLabels3[idx],
+          // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
+          backgroundColor: chartData3.datasets[idx].backgroundColor,
           data: stat
         }
       })
@@ -75,15 +83,61 @@ function Chart3 (props) {
   return (
     <div className='page-container chart-bg-odd' id='chart-3'>
       <div className='chart-container'>
-        <Bar
-          data={chartData3}
-          width={1000}
-          height={400}
-          options={chartOptions}
-        />
-        <div className="horizontal-flex">
+        <div className='horizontal-flex'>
+          <div style={{ flex: 0.6 }}>
+            <Bar
+              data={chartData3}
+              width={600}
+              height={400}
+              options={chartOptions}
+            />
+          </div>
+          <div style={{ flex: 0.4 }}>
+            <Bar
+              data={chartData3b}
+              width={400}
+              height={400}
+              options={{
+                title: {
+                  display: true,
+                  text: 'Field Goal % of these Small Forwards',
+                  fontSize: 25,
+                  fontColor: 'white',
+              
+                },
+                legend: {
+                  display: true,
+                  position: 'right',
+                  labels: {
+                    fontColor: 'white'
+                  }
+                },
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      fontColor: 'white'
+                  },
+                  }],
+                  xAxes: [{
+                    ticks: {
+                      fontColor: 'white'
+                    },
+                  }]
+                } 
+              }}
+            />
+          </div>
+          
+        </div>
+        <div className='horizontal-flex'>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam libero suscipit quod natus doloremque tenetur consectetur quia est perferendis! Quae nam molestias et distinctio maxime excepturi debitis, ipsa provident nostrum id cupiditate voluptatum accusantium nemo quaerat, in aperiam pariatur odio cumque, vitae similique impedit omnis. Beatae ducimus quae possimus! Inventore?
+            This variation uses a sample subset that is represented through a vertically grouped bar chart.
+            The x-axis seperates each group by shooting rows "FG Made", "FG Attempted", and "FG%" where "FG" means "Field Goal".
+            Similar to the first variation, The color coded legend on the right hand side allows users to visually determine distinct players and their percentages.
+            The main difference between this variation and the first one, is that the percentage column is isolated onto it's own chart and scale. I think 
+            this variation makes more since for the given dataset since field goals will have a higher value of makes and attempts in comparison to 3-pointers and free throws.
+            By isolating field goal percentage, it is easier to visually interpret these percentage values.
           </p>
           <Link
             activeClass='active'
@@ -100,6 +154,23 @@ function Chart3 (props) {
               startIcon={<ArrowUpwardIcon />}
             >
               Prev
+            </Button>
+          </Link>
+          <Link
+            activeClass='active'
+            to='home'
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+          >
+            <Button
+              variant='contained'
+              color='secondary'
+              className={classes.button}
+              startIcon={<ArrowUpwardIcon />}
+            >
+              Home
             </Button>
           </Link>
         </div>
