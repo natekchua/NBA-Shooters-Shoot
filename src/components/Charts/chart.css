@@ -1,7 +1,27 @@
-.chart-bg {
+.chart-bg-odd {
   background: linear-gradient(0deg, rgba(61, 61, 61, 0.384), rgba(44, 44, 44, 0.795)), url('../../img/bg.jpg') center no-repeat;
 }
 
+.chart-bg-even {
+  background: linear-gradient(0deg, rgba(44, 44, 44, 0.795), rgba(61, 61, 61, 0.384)), url('../../img/bg.jpg') center no-repeat;
+}
+
 .chart-container {
-  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.chart-container p {
+  font-size: 16px;
+  margin: 40px;
+}
+
+.horizontal-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.horizontal-flex p { 
+  flex: 0.9;
 }

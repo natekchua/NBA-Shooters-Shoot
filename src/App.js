@@ -11,7 +11,7 @@ const papa = require('papaparse/papaparse.min.js');
 
 function App () {
   const [dataset, setDataset] = useState(null);
-  
+
   useEffect(() => {
     papa.parse(csv.default, {
       header: true,
