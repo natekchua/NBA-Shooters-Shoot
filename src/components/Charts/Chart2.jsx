@@ -88,7 +88,7 @@ function Chart2 (props) {
         <div className='horizontal-flex'>
           <p>
             This variation uses a sample subset that is represented through a horizontally grouped bar chart.
-            The x-axis seperates each group by shooting rows "FT Made", "FT Attempted", and "FT%" where "FT" means "Free Throw".
+            The x-axis separates each group by shooting rows "FT Made", "FT Attempted", and "FT%" where "FT" means "Free Throw".
             Similar to the first variation, The color coded legend on the right hand side allows users to visually determine distinct players and their percentages.
             I think this variation of my sketch also works well as we can compare each player of this specific shooting category
             by simply doing row comparison. However, the on hover effect here is a little bit harder to use since the thickness of the rows are thinner than the previous columns.

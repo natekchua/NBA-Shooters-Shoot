@@ -72,12 +72,10 @@ function Chart3 (props) {
     chartData3b = {
       labels: ['FG%'],
       datasets: testSubset3.map(fp => [fp.FGPct]).map((stat, idx) => {
-        // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-        const color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         return {
           label: playerLabels3[idx],
-          backgroundColor: color,
-          hoverBackgroundColor: color,
+          backgroundColor: chartData3.datasets[idx].backgroundColor,
+          hoverBackgroundColor: chartData3.datasets[idx].hoverBackgroundColor,
           borderWidth: 1,
           hoverBorderColor: '#ffffff',
           data: stat
@@ -139,7 +137,7 @@ function Chart3 (props) {
         <div className='horizontal-flex'>
           <p>
             This variation uses a sample subset that is represented through a vertically grouped bar chart.
-            The x-axis seperates each group by shooting rows "FG Made", "FG Attempted", and "FG%" where "FG" means "Field Goal".
+            The x-axis separates each group by shooting rows "FG Made", "FG Attempted", and "FG%" where "FG" means "Field Goal".
             Similar to the first variation, The color coded legend on the right hand side allows users to visually determine distinct players and their percentages.
             The main difference between this variation and the first one, is that the percentage column is isolated onto it's own chart and scale. I think 
             this variation makes more since for the given dataset since field goals will have a higher value of makes and attempts in comparison to 3-pointers and free throws.

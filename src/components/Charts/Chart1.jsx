@@ -86,7 +86,7 @@ function Chart1 (props) {
         <div className='horizontal-flex'>
           <p>
             This variation uses a sample subset that is represented through a vertically grouped bar chart.
-            The x-axis seperates each group by shooting columns "3P Made", "3P Attempted", and "3P%" where "3P" means "Three Point".
+            The x-axis separates each group by shooting columns "3P Made", "3P Attempted", and "3P%" where "3P" means "Three Point".
             The color coded legend on the right hand side allows users to visually determine distinct players and their percentages.
             I think this variation of my sketch works well as we can easily compare each player of this specific shooting category
             by simply doing column comparison. The on hover effect to see the exact values also helps with getting a grasp on the statistics.
