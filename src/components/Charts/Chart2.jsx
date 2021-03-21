@@ -62,17 +62,19 @@ function Chart2 (props) {
     chartData2 = {
       labels: xAxisLabels,
       datasets: testSubset2.map(fp => [fp.FT, fp.FTA, fp.FTPct]).map((stat, idx) => {
+        // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
+        const color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         return {
           label: playerLabels2[idx],
-          // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-          backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          backgroundColor: color,
+          hoverBackgroundColor: color,
+          borderWidth: 1,
+          hoverBorderColor: '#ffffff',
           data: stat
         }
       })
     };
   }
-
-  console.log(chartData2)
 
   return (
     <div className='page-container chart-bg-even' id='chart-2'>

@@ -60,17 +60,19 @@ function Chart1 (props) {
     chartData1 = {
       labels: xAxisLabels,
       datasets: testSubset1.map(fp => [fp.ThreeP, fp.ThreePA, fp.ThreePPct]).map((stat, idx) => {
+        // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
+        const color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         return {
           label: playerLabels1[idx],
-          // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-          backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          backgroundColor: color,
+          hoverBackgroundColor: color,
+          borderWidth: 1,
+          hoverBorderColor: '#ffffff',
           data: stat
         }
       })
     };
   }
-
-  console.log(chartData1)
 
   return (
     <div className='page-container chart-bg-odd' id='chart-1'>

@@ -56,10 +56,14 @@ function Chart3 (props) {
     chartData3 = {
       labels: xAxisLabels,
       datasets: testSubset3.map(fp => [fp.FG, fp.FGA]).map((stat, idx) => {
+        // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
+        const color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         return {
           label: playerLabels3[idx],
-          // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-          backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          backgroundColor: color,
+          hoverBackgroundColor: color,
+          borderWidth: 1,
+          hoverBorderColor: '#ffffff',
           data: stat
         }
       })
@@ -68,17 +72,19 @@ function Chart3 (props) {
     chartData3b = {
       labels: ['FG%'],
       datasets: testSubset3.map(fp => [fp.FGPct]).map((stat, idx) => {
+        // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
+        const color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
         return {
           label: playerLabels3[idx],
-          // Random color generator: https://css-tricks.com/snippets/javascript/random-hex-color/
-          backgroundColor: chartData3.datasets[idx].backgroundColor,
+          backgroundColor: color,
+          hoverBackgroundColor: color,
+          borderWidth: 1,
+          hoverBorderColor: '#ffffff',
           data: stat
         }
       })
     };
   }
-
-  console.log(chartData3)
 
   return (
     <div className='page-container chart-bg-odd' id='chart-3'>

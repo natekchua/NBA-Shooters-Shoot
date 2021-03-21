@@ -9,7 +9,8 @@ function Home () {
     <header className='page-container home-bg' id='home'>
       <div className='home-intro-text'>
         <h2>Welcome to <span className='primary'>Shooters Shoot.</span></h2>
-        <h3>An interactive data visualization for 2020 NBA Shooting Statistics.</h3>
+        <h4>An <span className='primary'>interactive data visualization</span> of 2020 NBA Shooting Statistics.</h4>
+        <h6>Made with love by Nathan Chua</h6>
       </div>
       <div className='btn-container'>
         <Link
