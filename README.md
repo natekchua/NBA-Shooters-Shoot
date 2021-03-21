@@ -1,6 +1,6 @@
 # NBA-Shooters-Shoot
 
-An interactive data visualization of 2020 NBA Player Statistics.
+An interactive data visualization of 2020 NBA Player Statistics for my Computer Science Information Visualization Course.
 
 # Getting Started with Create React App
 
