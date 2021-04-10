@@ -15,38 +15,14 @@ function Home () {
       <div className='btn-container'>
         <Link
           activeClass='active'
-          to='chart-1'
-          spy={true}
-          smooth={true}
-          offset={0}
-          duration={500}
-        >
-          <Button variant='contained' color='primary'> 
-            Variation 1
-          </Button>
-        </Link>
-        <Link
-          activeClass='active'
-          to='chart-2'
+          to='shot-chart'
           spy={true}
           smooth={true}
           offset={0}
           duration={500}
         >
           <Button variant='contained' color='primary'>
-            Variation 2
-          </Button>
-        </Link>
-        <Link
-          activeClass='active'
-          to='chart-3'
-          spy={true}
-          smooth={true}
-          offset={0}
-          duration={500}
-        >
-          <Button variant='contained' color='primary'>
-            Variation 3
+            Explore
           </Button>
         </Link>
       </div>

@@ -41,7 +41,7 @@ const chartOptions = {
   } 
 }
 
-function Chart3 (props) {
+function ShotChart (props) {
   const { dataset } = props;
   const classes = useStyles();
 
@@ -85,7 +85,7 @@ function Chart3 (props) {
   }
 
   return (
-    <div className='page-container chart-bg-odd' id='chart-3'>
+    <div className='page-container chart-bg-odd' id='shot-chart'>
       <div className='chart-container'>
         <div className='horizontal-flex'>
           <div style={{ flex: 0.6 }}>
@@ -183,4 +183,4 @@ function Chart3 (props) {
   );
 }
 
-export default Chart3;
+export default ShotChart;

@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import Home from './components/Home/Home';
-import Chart1 from './components/Charts/Chart1';
-import Chart2 from './components/Charts/Chart2';
-import Chart3 from './components/Charts/Chart3';
+import ShotChart from './components/Charts/ShotChart';
 
 import './App.css';
 
@@ -28,9 +26,7 @@ function App () {
   return (
     <div className='App'>
       <Home />
-      <Chart1 dataset={dataset} />
-      <Chart2 dataset={dataset} />
-      <Chart3 dataset={dataset} />
+      <ShotChart dataset={dataset} />
     </div>
   );
 }
