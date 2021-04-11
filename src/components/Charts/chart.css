@@ -9,6 +9,10 @@
 .chart-container {
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .chart-container p {
@@ -22,6 +26,16 @@
   align-items: center;
 }
 
-.horizontal-flex p { 
-  flex: 0.9;
+.horizontal-flex .filter-container { 
+  flex: 1;
+  margin: 20px;
+}
+
+.filter-item {
+  padding: 8px;
+}
+
+.players-slider {
+  padding: 8px;
+  width: 1000px;
 }
