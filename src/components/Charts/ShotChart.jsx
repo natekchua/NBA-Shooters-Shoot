@@ -40,26 +40,125 @@ function ValueLabelComponent(props) {
 function ShotChart (props) {
   const { dataset } = props;
   const classes = useStyles();
-  const [position, setPosition] = useState('Point Guard');
-  const [category, setCategory] = useState('Field Goals');
+  const [position, setPosition] = useState('PG');
+  const [category, setCategory] = useState('FG');
   const [sortBy, setSortBy] = useState('Percentage');
   const [sortOrder, setSortOrder] = useState('None');
   const [numPlayers, setNumPlayers] = useState(5);
 
-  let testSubset3, playerLabels3, chartData3, chartData3b;
   const xAxisLabels = [`${category} Made`, `${category} Attempted`];
 
-  if (dataset) {
-    // Efficient Shooting SFs from the Field
-    testSubset3 = dataset.filter(p => p.Pos === 'SF' && p.FGPct >= 0.50 && p.FGA > 5);
-    playerLabels3 = testSubset3.map(p => p.Player);
+  // Function to handle Sort By and Sort Order functions.
+  const applySortingFilter = (subset) => {
+    if (category === 'FG') {
+      if (sortOrder === 'Ascending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => a.FGPct - b.FGPct);
+          subset.sort((a, b) => a.FGPct - b.FGPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => a.FG - b.FG);
+          subset.sort((a, b) => a.FG - b.FG);
+        } else {
+          subset.sort((a, b) => a.FGA - b.FGA);
+          subset.sort((a, b) => a.FGA - b.FGA);
+        }
+      } else if (sortOrder === 'Descending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => b.FGPct - a.FGPct);
+          subset.sort((a, b) => b.FGPct - a.FGPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => b.FG - a.FG);
+          subset.sort((a, b) =>  b.FG - a.FG);
+        } else {
+          subset.sort((a, b) => b.FGA - a.FGA);
+          subset.sort((a, b) => b.FGA - a.FGA);
+        }
+      }
+    } else if (category === '3P') {
+      if (sortOrder === 'Ascending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => a.ThreePPct - b.ThreePPct);
+          subset.sort((a, b) => a.ThreePPct - b.ThreePPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => a.ThreeP - b.ThreeP);
+          subset.sort((a, b) => a.ThreeP - b.ThreeP);
+        } else {
+          subset.sort((a, b) => a.ThreePA - b.ThreePA);
+          subset.sort((a, b) => a.ThreePA - b.ThreePA);
+        }
+      } else if (sortOrder === 'Descending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => b.ThreePPct - a.ThreePPct);
+          subset.sort((a, b) => b.ThreePPct - a.ThreePPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => b.ThreeP - a.ThreeP);
+          subset.sort((a, b) =>  b.ThreeP - a.ThreeP);
+        } else {
+          subset.sort((a, b) => b.ThreePA - a.ThreePA);
+          subset.sort((a, b) => b.ThreePA - a.ThreePA);
+        }
+      }
+    } else {
+      if (sortOrder === 'Ascending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => a.FTPct - b.FTPct);
+          subset.sort((a, b) => a.FTPct - b.FTPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => a.FT - b.FT);
+          subset.sort((a, b) => a.FT - b.FT);
+        } else {
+          subset.sort((a, b) => a.FTA - b.FTA);
+          subset.sort((a, b) => a.FTA - b.FTA);
+        }
+      } else if (sortOrder === 'Descending') {
+        if (sortBy === 'Percentage') {
+          subset.sort((a, b) => b.FTPct - a.FTPct);
+          subset.sort((a, b) => b.FTPct - a.FTPct);
+        } else if (sortBy === 'Makes') {
+          subset.sort((a, b) => b.FT - a.FT);
+          subset.sort((a, b) =>  b.FT - a.FT);
+        } else {
+          subset.sort((a, b) => b.FTA - a.FTA);
+          subset.sort((a, b) => b.FTA - a.FTA);
+        }
+      }
+    }
+    return subset;
+  }
 
-    chartData3 = {
+  let subset, chartData, chartDataPCT;
+
+  if (dataset) {
+    // Position Filter
+    subset = dataset.filter(p => p.Pos === position);
+
+    // Max # of Players Filter
+    subset = subset.slice(0, numPlayers);
+
+    // Sorting Filters
+    subset = applySortingFilter(subset);
+  
+    const playerLabels = subset.map(p => p.Player);
+    
+    // Statistic Category Filters 
+    let makesAttemptsSubset = subset.map(fp => [fp.FG, fp.FGA]);
+    let percentageSubset = subset.map(fp => [fp.FGPct]);
+
+    if (category === '3P') {
+      makesAttemptsSubset = subset.map(fp => [fp.ThreeP, fp.ThreePA]);
+      percentageSubset = subset.map(fp => [fp.ThreePPct]);
+    } else if (category === 'FT') {
+      makesAttemptsSubset = subset.map(fp => [fp.FT, fp.FTA]);
+      percentageSubset = subset.map(fp => [fp.FTPct]);
+    }
+
+    // Makes / Attempts Chart
+    chartData = {
       labels: xAxisLabels,
-      datasets: testSubset3.map(fp => [fp.FG, fp.FGA]).map((stat, idx) => {
+      datasets: makesAttemptsSubset.map((stat, idx) => {
         const color = colorArr[idx];
         return {
-          label: playerLabels3[idx],
+          label: playerLabels[idx],
           backgroundColor: color,
           hoverBackgroundColor: color,
           borderWidth: 1,
@@ -69,13 +168,14 @@ function ShotChart (props) {
       })
     };
 
-    chartData3b = {
-      labels: [`${category.substring(0, category.length - 1)} %`],
-      datasets: testSubset3.map(fp => [fp.FGPct]).map((stat, idx) => {
+    // Percentage Chart
+    chartDataPCT = {
+      labels: [`${category} %`],
+      datasets: percentageSubset.map((stat, idx) => {
         return {
-          label: playerLabels3[idx],
-          backgroundColor: chartData3.datasets[idx].backgroundColor,
-          hoverBackgroundColor: chartData3.datasets[idx].hoverBackgroundColor,
+          label: playerLabels[idx],
+          backgroundColor: chartData.datasets[idx].backgroundColor,
+          hoverBackgroundColor: chartData.datasets[idx].hoverBackgroundColor,
           borderWidth: 1,
           hoverBorderColor: '#ffffff',
           data: stat
@@ -84,8 +184,8 @@ function ShotChart (props) {
     };
   }
 
-  options.title.text = `Shooting Efficiency for ${position}s in the 2020 NBA Season`
-  optionsPCT.title.text = `Field Goal % for these ${position}s`
+  options.title.text = `Shooting Efficiency for ${position}s in the 2020 NBA Season`;
+  optionsPCT.title.text = `Field Goal % for these ${position}s`;
 
   return (
     <div className='position-container chart-bg-odd' id='shot-chart'>
@@ -93,7 +193,7 @@ function ShotChart (props) {
         <div className='horizontal-flex'>
           <div style={{ flex: 0.6 }}>
             <Bar
-              data={chartData3}
+              data={chartData}
               width={600}
               height={400}
               options={options}
@@ -101,7 +201,7 @@ function ShotChart (props) {
           </div>
           <div style={{ flex: 0.4 }}>
             <Bar
-              data={chartData3b}
+              data={chartDataPCT}
               width={400}
               height={400}
               options={optionsPCT}
