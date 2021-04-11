@@ -288,7 +288,7 @@ function ShotChart (props) {
               defaultValue={5}
               min={5}
               max={15}
-              onChange={e => setNumPlayers(e.target.value)}
+              onChangeCommitted={(e, v) => setNumPlayers(v)}
             />
           </div>
         </div>
