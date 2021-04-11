@@ -12,7 +12,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import './chart.css';
 
-const barChartColors = require('./barChartColors.js');
+const chartAttributes = require('./chartAtrributes.js');
+
+const { options, optionsPCT, colorArr } = chartAttributes;
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -25,32 +27,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 180,
   }
 }));
-
-const chartOptions = {
-  title: {
-    display: true,
-    text: 'Efficient Shooting Small Forwards from the Field in the 2020 NBA Season',
-    fontSize: 25,
-    fontColor: 'white',
-
-  },
-  legend: {
-    display: false
-  },
-  maintainAspectRatio: false,
-  scales: {
-    yAxes: [{
-      ticks: {
-        fontColor: 'white'
-    },
-    }],
-    xAxes: [{
-      ticks: {
-        fontColor: 'white'
-      },
-    }]
-  } 
-}
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
@@ -71,7 +47,7 @@ function ShotChart (props) {
   const [numPlayers, setNumPlayers] = useState(5);
 
   let testSubset3, playerLabels3, chartData3, chartData3b;
-  const xAxisLabels = ['FG Made', 'FG Attempted'];
+  const xAxisLabels = [`${category} Made`, `${category} Attempted`];
 
   if (dataset) {
     // Efficient Shooting SFs from the Field
@@ -81,7 +57,7 @@ function ShotChart (props) {
     chartData3 = {
       labels: xAxisLabels,
       datasets: testSubset3.map(fp => [fp.FG, fp.FGA]).map((stat, idx) => {
-        const color = barChartColors.colorArr[idx];
+        const color = colorArr[idx];
         return {
           label: playerLabels3[idx],
           backgroundColor: color,
@@ -94,7 +70,7 @@ function ShotChart (props) {
     };
 
     chartData3b = {
-      labels: ['FG%'],
+      labels: [`${category.substring(0, category.length - 1)} %`],
       datasets: testSubset3.map(fp => [fp.FGPct]).map((stat, idx) => {
         return {
           label: playerLabels3[idx],
@@ -108,6 +84,9 @@ function ShotChart (props) {
     };
   }
 
+  options.title.text = `Shooting Efficiency for ${position}s in the 2020 NBA Season`
+  optionsPCT.title.text = `Field Goal % for these ${position}s`
+
   return (
     <div className='position-container chart-bg-odd' id='shot-chart'>
       <div className='chart-container'>
@@ -117,7 +96,7 @@ function ShotChart (props) {
               data={chartData3}
               width={600}
               height={400}
-              options={chartOptions}
+              options={options}
             />
           </div>
           <div style={{ flex: 0.4 }}>
@@ -125,35 +104,7 @@ function ShotChart (props) {
               data={chartData3b}
               width={400}
               height={400}
-              options={{
-                title: {
-                  display: true,
-                  text: 'Field Goal % of these Small Forwards',
-                  fontSize: 25,
-                  fontColor: 'white',
-              
-                },
-                legend: {
-                  display: true,
-                  position: 'right',
-                  labels: {
-                    fontColor: 'white'
-                  }
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                  },
-                  }],
-                  xAxes: [{
-                    ticks: {
-                      fontColor: 'white'
-                    },
-                  }]
-                } 
-              }}
+              options={optionsPCT}
             />
           </div>      
         </div>
@@ -172,12 +123,11 @@ function ShotChart (props) {
                   id: 'outlined-position-native-simple',
                 }}
               >
-                <option aria-label='None' value='' />
-                <option value={'Point Guard'}>Point Guard</option>
-                <option value={'Shooting Guard'}>Shooting Guard</option>
-                <option value={'Small Forward'}>Small Forward</option>
-                <option value={'Power Forward'}>Power Forward</option>
-                <option value={'Center'}>Center</option>
+                <option value={'PG'}>Point Guard</option>
+                <option value={'SG'}>Shooting Guard</option>
+                <option value={'SF'}>Small Forward</option>
+                <option value={'PF'}>Power Forward</option>
+                <option value={'C'}>Center</option>
               </Select>
             </FormControl>
             <FormControl variant='filled' className={classes.formControl}>
@@ -192,10 +142,9 @@ function ShotChart (props) {
                   id: 'outlined-position-native-simple',
                 }}
               >
-                <option aria-label='None' value='' />
-                <option value={'Field Goals'}>Field Goals</option>
-                <option value={'Three Pointers'}>Three Pointers</option>
-                <option value={'Free Throws'}>Free Throws</option>
+                <option value={'FG'}>Field Goals</option>
+                <option value={'3P'}>Three Pointers</option>
+                <option value={'FT'}>Free Throws</option>
               </Select>
             </FormControl>
             <FormControl variant='filled' className={classes.formControl}>
@@ -210,7 +159,6 @@ function ShotChart (props) {
                   id: 'outlined-position-native-simple',
                 }}
               >
-                <option aria-label='None' value='' />
                 <option value={'Percentage'}>Percentage</option>
                 <option value={'Makes'}>Makes</option>
                 <option value={'Attempts'}>Attempts</option>
@@ -228,16 +176,15 @@ function ShotChart (props) {
                   id: 'outlined-position-native-simple',
                 }}
               >
-                <option aria-label='None' value='' />
                 <option value={'None'}>None</option>
                 <option value={'Ascending'}>Ascending</option>
                 <option value={'Descending'}>Descending</option>
               </Select>
             </FormControl>
-            <h5 className='filter-item'># of Players</h5>
+            <h5 className='filter-item'>Max # of Players</h5>
             <Slider
               ValueLabelComponent={ValueLabelComponent}
-              aria-label='# of Players'
+              aria-label='Max # of Players'
               defaultValue={5}
               min={5}
               max={15}
