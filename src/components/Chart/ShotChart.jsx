@@ -335,7 +335,7 @@ function ShotChart (props) {
         </div>
         <div className='horizontal-flex'>
           <p>
-            This data visualization allows you to play around with 2020 NBA Player Statistics supplied by <a href='https://www.basketball-reference.com/leagues/NBA_2020_totals.html' target='_blank' rel='noreferrer'>basketballreference.com</a>.
+            This data visualization allows you to play around with 2020 NBA Player Shooting Statistics supplied by <a href='https://www.basketball-reference.com/leagues/NBA_2020_totals.html' target='_blank' rel='noreferrer'>basketballreference.com</a>.
             You can filter by position, statistic category, type (Makes, Attempts, Percentage), and ranking. Player count is limited to a range of 5-15 for readability purposes.
           </p>
           <Link
