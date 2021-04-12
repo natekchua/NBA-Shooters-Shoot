@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 160,
+    minWidth: 180,
   }
 }));
 
@@ -223,121 +223,112 @@ function ShotChart (props) {
         </div>
         <div className='horizontal-flex'>
           <div className='horizontal-flex filter-container'>
-            <h4>Filters:</h4>
-            <FormControl variant='filled' className={classes.formControl}>
-              <InputLabel htmlFor='filled-position-native-simple'>Position</InputLabel>
-              <Select
-                native
-                value={position}
-                onChange={e => setPosition(e.target.value)}
-                label='Position'
-                inputProps={{
-                  name: 'position',
-                  id: 'outlined-position-native-simple',
-                }}
-              >
-                <option value={'PG'}>Point Guard</option>
-                <option value={'SG'}>Shooting Guard</option>
-                <option value={'SF'}>Small Forward</option>
-                <option value={'PF'}>Power Forward</option>
-                <option value={'C'}>Center</option>
-              </Select>
-            </FormControl>
-            <FormControl variant='filled' className={classes.formControl}>
-              <InputLabel htmlFor='filled-position-native-simple'>Statistic Category</InputLabel>
-              <Select
-                native
-                value={category}
-                onChange={e => setCategory(e.target.value)}
-                label='Category'
-                inputProps={{
-                  name: 'Category',
-                  id: 'outlined-position-native-simple',
-                }}
-              >
-                <option value={'FG'}>Field Goals</option>
-                <option value={'3P'}>Three Pointers</option>
-                <option value={'FT'}>Free Throws</option>
-              </Select>
-            </FormControl>
-            <FormControl variant='filled' className={classes.formControl}>
-              <InputLabel htmlFor='filled-position-native-simple'>Sort By</InputLabel>
-              <Select
-                native
-                value={sortBy}
-                onChange={e => setSortBy(e.target.value)}
-                label='Sort By'
-                inputProps={{
-                  name: 'Sort By',
-                  id: 'outlined-position-native-simple',
-                }}
-              >
-                <option value={'Percentage'}>Percentage</option>
-                <option value={'Makes'}>Makes</option>
-                <option value={'Attempts'}>Attempts</option>
-              </Select>
-            </FormControl>
-            <FormControl variant='filled' className={classes.formControl}>
-              <InputLabel htmlFor='filled-position-native-simple'>Sort Order</InputLabel>
-              <Select
-                native
-                value={sortOrder}
-                onChange={e => setSortOrder(e.target.value)}
-                label='Sort Order'
-                inputProps={{
-                  name: 'Sort Order',
-                  id: 'outlined-position-native-simple',
-                }}
-              >
-                <option value={'Ascending'}>Ascending</option>
-                <option value={'Descending'}>Descending</option>
-              </Select>
-            </FormControl>
-            <FormControl variant='filled' className={classes.formControl}>
-              <InputLabel htmlFor='filled-position-native-simple'>Player Ranking</InputLabel>
-              <Select
-                native
-                value={ranking}
-                onChange={e => setRanking(e.target.value)}
-                label='Ranking'
-                inputProps={{
-                  name: 'Ranking',
-                  id: 'outlined-position-native-simple',
-                }}
-              >
-                <option value={'Best'}>Best</option>
-                <option value={'Worst'}>Worst</option>
-              </Select>
-            </FormControl>
-            <h5 className='filter-item'>Max # of Players</h5>
-            <Slider
-              ValueLabelComponent={ValueLabelComponent}
-              aria-label='Max # of Players'
-              defaultValue={5}
-              min={5}
-              max={15}
-              onChangeCommitted={(e, v) => setNumPlayers(v)}
-            />
+            <div className='horizontal-flex' style={{ flex: 0.6 }}>
+              <h4>Filters:</h4>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-position-native-simple'>Position</InputLabel>
+                <Select
+                  native
+                  value={position}
+                  onChange={e => setPosition(e.target.value)}
+                  label='Position'
+                  inputProps={{
+                    name: 'position',
+                    id: 'outlined-position-native-simple',
+                  }}
+                >
+                  <option value={'PG'}>Point Guard</option>
+                  <option value={'SG'}>Shooting Guard</option>
+                  <option value={'SF'}>Small Forward</option>
+                  <option value={'PF'}>Power Forward</option>
+                  <option value={'C'}>Center</option>
+                </Select>
+              </FormControl>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-position-native-simple'>Statistic Category</InputLabel>
+                <Select
+                  native
+                  value={category}
+                  onChange={e => setCategory(e.target.value)}
+                  label='Category'
+                  inputProps={{
+                    name: 'Category',
+                    id: 'outlined-position-native-simple',
+                  }}
+                >
+                  <option value={'FG'}>Field Goals</option>
+                  <option value={'3P'}>Three Pointers</option>
+                  <option value={'FT'}>Free Throws</option>
+                </Select>
+              </FormControl>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-position-native-simple'>Sort By</InputLabel>
+                <Select
+                  native
+                  value={sortBy}
+                  onChange={e => setSortBy(e.target.value)}
+                  label='Sort By'
+                  inputProps={{
+                    name: 'Sort By',
+                    id: 'outlined-position-native-simple',
+                  }}
+                >
+                  <option value={'Percentage'}>Percentage</option>
+                  <option value={'Makes'}>Makes</option>
+                  <option value={'Attempts'}>Attempts</option>
+                </Select>
+              </FormControl>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-position-native-simple'>Sort Order</InputLabel>
+                <Select
+                  native
+                  value={sortOrder}
+                  onChange={e => setSortOrder(e.target.value)}
+                  label='Sort Order'
+                  inputProps={{
+                    name: 'Sort Order',
+                    id: 'outlined-position-native-simple',
+                  }}
+                >
+                  <option value={'Ascending'}>Ascending</option>
+                  <option value={'Descending'}>Descending</option>
+                </Select>
+              </FormControl>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-position-native-simple'>Player Ranking</InputLabel>
+                <Select
+                  native
+                  value={ranking}
+                  onChange={e => setRanking(e.target.value)}
+                  label='Ranking'
+                  inputProps={{
+                    name: 'Ranking',
+                    id: 'outlined-position-native-simple',
+                  }}
+                >
+                  <option value={'Best'}>Best</option>
+                  <option value={'Worst'}>Worst</option>
+                </Select>
+              </FormControl>
+            </div>
+            <div className='horizontal-flex' style={{ flex: 0.4 }}>
+              <h5 className='filter-item'>Max # of Players</h5>
+              <Slider
+                ValueLabelComponent={ValueLabelComponent}
+                aria-label='Max # of Players'
+                defaultValue={5}
+                min={5}
+                max={15}
+                onChangeCommitted={(e, v) => setNumPlayers(v)}
+              />
+            </div>
           </div>
         </div>
-        <div>
-         <Link
-            activeClass='active'
-            to='chart-2'
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={500}
-          >
-            <Button
-              variant='contained'
-              color='secondary'
-              className={classes.button}
-              startIcon={<ArrowUpwardIcon />}
-            >
-              Prev
-            </Button>
-          </Link>
+        <div className='horizontal-flex'>
+          <p>
+            This data visualization allows you to play around with 2020 NBA Player Statistics supplied by <a href='https://www.basketball-reference.com/leagues/NBA_2020_totals.html' target='_blank'>basketballreference.com</a>.
+            You can filter by position, statistic category, type (Makes, Attempts, Percentage), and ranking. Player count is limited to a range of 5-15 for readability purposes.
+          </p>
           <Link
             activeClass='active'
             to='home'

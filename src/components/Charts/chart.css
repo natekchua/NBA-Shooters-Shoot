@@ -29,6 +29,7 @@
 .horizontal-flex .filter-container { 
   flex: 1;
   margin: 20px;
+  color: white !important;
 }
 
 .filter-item {
