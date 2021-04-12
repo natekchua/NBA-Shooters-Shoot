@@ -16,6 +16,7 @@ const chartAttributes = require('./chartAtrributes.js');
 
 const { options, optionsPCT, colorArr } = chartAttributes;
 
+// Material UI styling.
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// Tooltip helper for Max Players slider.
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
   return (
@@ -197,6 +199,7 @@ function ShotChart (props) {
     };
   }
 
+  // Update Chart titles upon changing position filter.
   options.title.text = `Shooting Frequency for ${position}s in the 2020 NBA Season`;
   optionsPCT.title.text = `Shooting Efficiency (%) for these ${position}s`;
 

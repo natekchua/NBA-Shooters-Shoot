@@ -1,3 +1,4 @@
+// Makes / Attempts chart properties.
 const options = {
   title: {
     display: true,
@@ -24,6 +25,7 @@ const options = {
   } 
 };
 
+// Percentage chart properties.
 const optionsPCT = {
   title: {
     display: true,
@@ -54,6 +56,7 @@ const optionsPCT = {
   } 
 };
 
+// color array (at most 15 colors for now) to map to bars in the bar charts.
 const colorArr = [
   '#00FFFF',
   '#7FFF00',

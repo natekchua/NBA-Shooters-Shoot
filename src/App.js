@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Home from './components/Home/Home';
-import ShotChart from './components/Charts/ShotChart';
+import ShotChart from './components/Chart/ShotChart';
 
 import './App.css';
 
@@ -10,6 +10,7 @@ const papa = require('papaparse/papaparse.min.js');
 function App () {
   const [dataset, setDataset] = useState(null);
 
+  // use Papa parse to read the local dataset.
   useEffect(() => {
     papa.parse(csv.default, {
       header: true,
@@ -19,6 +20,7 @@ function App () {
     });
   }, [])
   
+  // Save the parsed dataset in state and pass it down to chart component.
   const setData = (result) => {
     setDataset(result.data);
   }
