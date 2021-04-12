@@ -229,7 +229,7 @@ function ShotChart (props) {
             <div className='horizontal-flex' style={{ flex: 0.6 }}>
               <h4>Filters:</h4>
               <FormControl variant='filled' className={classes.formControl}>
-                <InputLabel htmlFor='filled-position-native-simple'>Position</InputLabel>
+                <InputLabel color='secondary' htmlFor='filled-position-native-simple'>Position</InputLabel>
                 <Select
                   native
                   value={position}
@@ -239,6 +239,7 @@ function ShotChart (props) {
                     name: 'position',
                     id: 'outlined-position-native-simple',
                   }}
+                  color='secondary'
                 >
                   <option value={'PG'}>Point Guard</option>
                   <option value={'SG'}>Shooting Guard</option>
@@ -248,7 +249,7 @@ function ShotChart (props) {
                 </Select>
               </FormControl>
               <FormControl variant='filled' className={classes.formControl}>
-                <InputLabel htmlFor='filled-position-native-simple'>Statistic Category</InputLabel>
+                <InputLabel color='secondary' htmlFor='filled-position-native-simple'>Statistic Category</InputLabel>
                 <Select
                   native
                   value={category}
@@ -258,6 +259,7 @@ function ShotChart (props) {
                     name: 'Category',
                     id: 'outlined-position-native-simple',
                   }}
+                  color='secondary'
                 >
                   <option value={'FG'}>Field Goals</option>
                   <option value={'3P'}>Three Pointers</option>
@@ -265,7 +267,7 @@ function ShotChart (props) {
                 </Select>
               </FormControl>
               <FormControl variant='filled' className={classes.formControl}>
-                <InputLabel htmlFor='filled-position-native-simple'>Sort By</InputLabel>
+                <InputLabel color='secondary' htmlFor='filled-position-native-simple'>Sort By</InputLabel>
                 <Select
                   native
                   value={sortBy}
@@ -275,6 +277,7 @@ function ShotChart (props) {
                     name: 'Sort By',
                     id: 'outlined-position-native-simple',
                   }}
+                  color='secondary'
                 >
                   <option value={'Percentage'}>Percentage</option>
                   <option value={'Makes'}>Makes</option>
@@ -282,7 +285,7 @@ function ShotChart (props) {
                 </Select>
               </FormControl>
               <FormControl variant='filled' className={classes.formControl}>
-                <InputLabel htmlFor='filled-position-native-simple'>Sort Order</InputLabel>
+                <InputLabel color='secondary' htmlFor='filled-position-native-simple'>Sort Order</InputLabel>
                 <Select
                   native
                   value={sortOrder}
@@ -292,13 +295,14 @@ function ShotChart (props) {
                     name: 'Sort Order',
                     id: 'outlined-position-native-simple',
                   }}
+                  color='secondary'
                 >
                   <option value={'Ascending'}>Ascending</option>
                   <option value={'Descending'}>Descending</option>
                 </Select>
               </FormControl>
               <FormControl variant='filled' className={classes.formControl}>
-                <InputLabel htmlFor='filled-position-native-simple'>Player Ranking</InputLabel>
+                <InputLabel color='secondary' htmlFor='filled-position-native-simple'>Player Ranking</InputLabel>
                 <Select
                   native
                   value={ranking}
@@ -308,6 +312,7 @@ function ShotChart (props) {
                     name: 'Ranking',
                     id: 'outlined-position-native-simple',
                   }}
+                  color='secondary'
                 >
                   <option value={'Best'}>Best</option>
                   <option value={'Worst'}>Worst</option>
