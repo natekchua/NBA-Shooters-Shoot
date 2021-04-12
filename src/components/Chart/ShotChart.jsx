@@ -323,6 +323,7 @@ function ShotChart (props) {
                 min={5}
                 max={15}
                 onChangeCommitted={(e, v) => setNumPlayers(v)}
+                color='secondary'
               />
             </div>
           </div>

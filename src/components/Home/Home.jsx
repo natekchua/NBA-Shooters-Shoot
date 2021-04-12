@@ -21,7 +21,7 @@ function Home () {
           offset={0}
           duration={500}
         >
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='secondary'>
             Explore
           </Button>
         </Link>
