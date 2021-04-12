@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 180,
+    minWidth: 160,
   }
 }));
 
@@ -43,7 +43,8 @@ function ShotChart (props) {
   const [position, setPosition] = useState('PG');
   const [category, setCategory] = useState('FG');
   const [sortBy, setSortBy] = useState('Percentage');
-  const [sortOrder, setSortOrder] = useState('None');
+  const [sortOrder, setSortOrder] = useState('Ascending');
+  const [ranking, setRanking] = useState('Best');
   const [numPlayers, setNumPlayers] = useState(5);
 
   const xAxisLabels = [`${category} Made`, `${category} Attempted`];
@@ -132,12 +133,24 @@ function ShotChart (props) {
     // Position Filter
     subset = dataset.filter(p => p.Pos === position);
 
-    // Max # of Players Filter
-    subset = subset.slice(0, numPlayers);
-
     // Sorting Filters
     subset = applySortingFilter(subset);
   
+    // Max # of Players Filter
+    if (ranking === 'Best') {
+      if (sortOrder === 'Ascending') {
+        subset = subset.slice(subset.length - numPlayers, subset.length);
+      } else {
+        subset = subset.slice(0, numPlayers);
+      }
+    } else {
+      if (sortOrder === 'Ascending') {
+        subset = subset.slice(0, numPlayers);
+      } else {
+        subset = subset.slice(subset.length - numPlayers, subset.length);
+      }
+    }
+
     const playerLabels = subset.map(p => p.Player);
     
     // Statistic Category Filters 
@@ -184,8 +197,8 @@ function ShotChart (props) {
     };
   }
 
-  options.title.text = `Shooting Efficiency for ${position}s in the 2020 NBA Season`;
-  optionsPCT.title.text = `Field Goal % for these ${position}s`;
+  options.title.text = `Shooting Frequency for ${position}s in the 2020 NBA Season`;
+  optionsPCT.title.text = `Shooting Efficiency (%) for these ${position}s`;
 
   return (
     <div className='position-container chart-bg-odd' id='shot-chart'>
@@ -253,9 +266,9 @@ function ShotChart (props) {
                 native
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value)}
-                label='Sorting'
+                label='Sort By'
                 inputProps={{
-                  name: 'Sorting',
+                  name: 'Sort By',
                   id: 'outlined-position-native-simple',
                 }}
               >
@@ -270,15 +283,30 @@ function ShotChart (props) {
                 native
                 value={sortOrder}
                 onChange={e => setSortOrder(e.target.value)}
-                label='Sorting'
+                label='Sort Order'
                 inputProps={{
-                  name: 'Sorting',
+                  name: 'Sort Order',
                   id: 'outlined-position-native-simple',
                 }}
               >
-                <option value={'None'}>None</option>
                 <option value={'Ascending'}>Ascending</option>
                 <option value={'Descending'}>Descending</option>
+              </Select>
+            </FormControl>
+            <FormControl variant='filled' className={classes.formControl}>
+              <InputLabel htmlFor='filled-position-native-simple'>Player Ranking</InputLabel>
+              <Select
+                native
+                value={ranking}
+                onChange={e => setRanking(e.target.value)}
+                label='Ranking'
+                inputProps={{
+                  name: 'Ranking',
+                  id: 'outlined-position-native-simple',
+                }}
+              >
+                <option value={'Best'}>Best</option>
+                <option value={'Worst'}>Worst</option>
               </Select>
             </FormControl>
             <h5 className='filter-item'>Max # of Players</h5>
